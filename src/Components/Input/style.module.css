@@ -1,6 +1,11 @@
 .form__group {
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+.Wrapped__form__group {
+  display: flex;
+  flex-direction: column;
   width: 70%;
 }
 
@@ -37,6 +42,7 @@ input::placeholder {
   position: absolute;
   right: 1rem;
 }
+
 .form__submit {
   width: 100%;
   margin-top: 2rem;
@@ -47,4 +53,17 @@ input::placeholder {
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   font-weight: 500;
+  cursor: pointer;
+}
+.no__background {
+  width: 100%;
+  margin-top: 2rem;
+  border-radius: 6px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  background: #fff;
+  color: #000;
 }

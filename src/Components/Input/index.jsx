@@ -5,9 +5,13 @@ import { Typography } from '../Typography';
 
 export default class Input extends Component {
   render() {
-    const { type, label, placeholder, name } = this.props;
+    const { type, label, placeholder, name, nobackground, loginPage } =
+      this.props;
     return (
-      <div className={styles.form__group}>
+      <div
+        className={
+          loginPage ? styles.Wrapped__form__group : styles.form__group
+        }>
         {type == 'submit' ? (
           <></>
         ) : (
@@ -23,7 +27,9 @@ export default class Input extends Component {
               type={type}
               placeholder={placeholder}
             />
-            <Image ImageSrc='/assets/Vector.svg' />
+            {placeholder == '•••••••••' && (
+              <Image ImageSrc='/assets/Vector.svg' />
+            )}
           </div>
         ) : type == 'submit' ? (
           <input
@@ -31,7 +37,17 @@ export default class Input extends Component {
             name={name}
             type={type}
             value={name}
-            className={styles.form__submit}
+            className={
+              nobackground ? styles.no__background : styles.form__submit
+            }
+          />
+        ) : type == 'tel' ? (
+          <input
+            id={name}
+            name={name}
+            type={type}
+            pattern='[0-9]{3} [0-9]{3}-[0-9]{4}'
+            placeholder={placeholder}
           />
         ) : (
           <input

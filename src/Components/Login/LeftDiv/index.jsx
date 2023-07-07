@@ -6,6 +6,7 @@ import SocialIcon from '../../SocialIcon';
 import Form from '../../Form';
 import Input from '../../Input';
 import Container from '../../Container';
+import Or from '../../OrSeprator';
 
 export default class LeftDiv extends Component {
   render() {
@@ -23,25 +24,23 @@ export default class LeftDiv extends Component {
               <SocialIcon key={icon} icon={icon} />
             ))}
           </div>
-          <div className={styles.or__serprate}>
-            <span></span>
-            <div className={styles.or__text}>Or</div>
-            <span></span>
-          </div>
+          <Or />
           <Form>
             <Input
               name='email'
-              type='text'
+              type='email'
               label='Your email'
               placeholder='Write your email'
+              loginPage
             />
             <Input
               name='password'
               type='password'
               label='Enter your password'
               placeholder='•••••••••'
+              loginPage
             />
-            <Input name='Login' type='submit' />
+            <Input name='Login' type='submit' loginPage />
           </Form>
           <div className={styles.register}>
             <Typography variant={'h6'}>
