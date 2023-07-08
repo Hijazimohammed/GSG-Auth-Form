@@ -3,7 +3,14 @@ import styles from './style.module.css';
 
 export default class Form extends Component {
   render() {
-    const { children } = this.props;
-    return <form className={styles.form}>{children}</form>;
+    const { children, onSubmitHandler, signUp, onSubmitLoginHandler } =
+      this.props;
+    return (
+      <form
+        className={styles.form}
+        onSubmit={signUp ? onSubmitHandler : onSubmitLoginHandler}>
+        {children}
+      </form>
+    );
   }
 }

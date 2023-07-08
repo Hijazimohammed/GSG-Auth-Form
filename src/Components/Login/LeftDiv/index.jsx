@@ -7,9 +7,42 @@ import Form from '../../Form';
 import Input from '../../Input';
 import Container from '../../Container';
 import Or from '../../OrSeprator';
+import Success from '../../Success';
+import Error from '../../Error';
 
+const data = JSON.parse(localStorage.getItem('data'));
 export default class LeftDiv extends Component {
+  state = {
+    showPassword: false,
+    register: false,
+    email: '',
+    password: '',
+    login: '',
+  };
+
+  handleShowPassword = () => {
+    this.setState((prevState) => ({ showPassword: !prevState.showPassword }));
+  };
+
+  onSubmitLoginHandler = (e) => {
+    e.preventDefault();
+    const { email, password } = this.state;
+    if (email == data.email && password == data.password) {
+      this.setState({ login: true });
+      this.setState({ email: '', password: '' });
+    } else {
+      this.setState({ login: false });
+      alert('Something went wrong try again');
+    }
+  };
+
+  onChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+
   render() {
+    const { registerRedirect } = this.props;
     return (
       <Container>
         <section className={styles.left__div}>
@@ -25,26 +58,35 @@ export default class LeftDiv extends Component {
             ))}
           </div>
           <Or />
-          <Form>
+          <Form onSubmitLoginHandler={this.onSubmitLoginHandler}>
             <Input
+              value={this.state.email}
               name='email'
               type='email'
               label='Your email'
               placeholder='Write your email'
               loginPage
+              onChange={this.onChange}
             />
             <Input
+              value={this.state.password}
               name='password'
               type='password'
               label='Enter your password'
               placeholder='•••••••••'
               loginPage
+              showPassword={this.state.showPassword}
+              handleShowPassword={this.handleShowPassword}
+              onChange={this.onChange}
             />
+            {this.state.login && <Success />}
+
             <Input name='Login' type='submit' loginPage />
           </Form>
           <div className={styles.register}>
             <Typography variant={'h6'}>
-              Don’t have an account? <span>Register</span>
+              Don’t have an account?{' '}
+              <span onClick={registerRedirect}>Register</span>
             </Typography>
           </div>
         </section>

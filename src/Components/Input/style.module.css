@@ -41,6 +41,12 @@ input::placeholder {
 .form__input__password img {
   position: absolute;
   right: 1rem;
+  cursor: pointer;
+}
+.form__input__password svg {
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
 }
 
 .form__submit {
@@ -55,9 +61,9 @@ input::placeholder {
   font-weight: 500;
   cursor: pointer;
 }
+
 .no__background {
   width: 100%;
-  margin-top: 2rem;
   border-radius: 6px;
   text-align: center;
   font-family: 'Inter', sans-serif;

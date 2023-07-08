@@ -45,6 +45,9 @@
 }
 .right__div__image {
   position: absolute;
-  bottom: -5rem;
-  right: -5rem;
+  transform: translate(20rem, 11rem);
+  -webkit-transform: translate(20rem, 11rem);
+  -moz-transform: translate(20rem, 11rem);
+  -ms-transform: translate(20rem, 11rem);
+  -o-transform: translate(20rem, 11rem);
 }

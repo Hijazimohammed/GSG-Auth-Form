@@ -33,4 +33,5 @@
 }
 .register h6 span {
   color: #1565d8;
+  cursor: pointer;
 }

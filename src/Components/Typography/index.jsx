@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './style.module.css';
 
-export const Typography = ({ children, variant }) => {
+export const Typography = ({ children, variant, registerRedirect }) => {
   switch (variant) {
     case 'h1':
       return <h1 className={styles.t__h1}>{children}</h1>;
@@ -14,7 +14,13 @@ export const Typography = ({ children, variant }) => {
     case 'h5':
       return <h5 className={styles.t__h5}>{children}</h5>;
     case 'h6':
-      return <h6 className={styles.t__h6}>{children}</h6>;
+      return (
+        <h6
+          onClick={registerRedirect ? registerRedirect : () => {}}
+          className={styles.t__h6}>
+          {children}
+        </h6>
+      );
     case 'body1':
       return <p className={styles.t__body1}>{children} </p>;
     case 'body2':
