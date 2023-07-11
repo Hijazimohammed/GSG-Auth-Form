@@ -14,6 +14,8 @@ const errors = {
   username: 'username',
   phone: 'phone',
   repeatePassword: 'repeatePassword',
+  password: 'password',
+  terms: 'terms',
 };
 export default class LeftDiv extends Component {
   state = {
@@ -28,6 +30,7 @@ export default class LeftDiv extends Component {
     isEmailValid: false,
     isUsernameValid: false,
     isPhoneValid: false,
+    isConditionValid: false,
     conditions: false,
   };
 
@@ -131,6 +134,7 @@ export default class LeftDiv extends Component {
         return {
           ...prevState,
           conditions: true,
+          isConditionValid: true,
         };
       });
     } else {
@@ -138,14 +142,46 @@ export default class LeftDiv extends Component {
         return {
           ...prevState,
           conditions: false,
+          isConditionValid: true,
         };
       });
     }
     return valid;
   };
 
+  checkPassword = () => {
+    if (this.state.password != '') {
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          isPasswordValid: false,
+        };
+      });
+      return true;
+    } else {
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          isPasswordValid: true,
+        };
+      });
+      return false;
+    }
+  };
+
   onChangeHandler = (e) => {
     const { name, value } = e.target;
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        isPasswordValid: false,
+        isRepeatePasswordValid: false,
+        isEmailValid: false,
+        isUsernameValid: false,
+        isPhoneValid: false,
+        isConditionValid: false,
+      };
+    });
     this.setState({ [name]: e.target.value });
     let strength = 0;
     if (name === 'password') {
@@ -182,6 +218,7 @@ export default class LeftDiv extends Component {
       this.validUsername(this.state.username) &&
       this.validRepetePassword(this.state.repeatPassword) &&
       this.validPhone(this.state.phone) &&
+      this.checkPassword() &&
       this.checkConditions(this.state.conditions)
     ) {
       localStorage.setItem('data', JSON.stringify(this.state));
@@ -200,7 +237,6 @@ export default class LeftDiv extends Component {
         conditions: false,
       });
       this.props.registerRedirect();
-    } else {
     }
   };
 
@@ -261,6 +297,7 @@ export default class LeftDiv extends Component {
                 value={this.state.password}
               />
               <PasswordStrength strength={this.state.passwordStrength} />
+              {this.state.isPasswordValid && <Error text={errors.password} />}
               <Input
                 name='repeatPassword'
                 type='password'
@@ -284,6 +321,7 @@ export default class LeftDiv extends Component {
                   I agree to terms & conditions
                 </Typography>
               </div>
+              {this.state.isConditionValid && <Error text={errors.terms} />}
               <Input name='Register Account' type='submit' />
               <Or />
               <Input

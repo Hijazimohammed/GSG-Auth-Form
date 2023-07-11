@@ -6,6 +6,8 @@ const errors = {
   username: 'Invalid Username Format',
   phone: 'Invalid Phine Numer Format',
   repeatePassword: 'Match Password ',
+  password: 'Invalid Password Format',
+  terms: 'Can you agreed terms & conditions ',
 };
 export default class Error extends Component {
   render() {
@@ -16,6 +18,8 @@ export default class Error extends Component {
         {text == 'username' && errors.username}
         {text == 'phone' && errors.phone}
         {text == 'repeatePassword' && errors.repeatePassword}
+        {text == 'password' && errors.password}
+        {text == 'terms' && errors.terms}
         {text == 'Something went wrong try again' &&
           'Something went wrong try again'}
       </span>
